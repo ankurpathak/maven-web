@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        PATH = "/usr/local/sdkman/candidates/maven/current/bin:$PATH"   
+    }
     stages{
         stage("Welcome"){
             steps{
@@ -11,6 +14,9 @@ pipeline {
             steps{
                 git 'https://github.com/ankurpathak/maven-web.git'
             }
+        }
+        stage("Maven Build"){
+            sh "mavn clean package"
         }
     }
 }
