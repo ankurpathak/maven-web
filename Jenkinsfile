@@ -26,8 +26,8 @@ pipeline {
             steps{
                 sshagent (['vagrant-key']) {
                     sh ' scp -o StrictHostKeyChecking=no target/maven-web.war vagrant@172.28.128.4:/home/vagrant/tomcat/webapps/ '
-                    sh ' ssh -o StrictHostKeyChecking=no vagrant@172.28.128.4 export SDKMAN_DIR=\"/usr/local/sdkman\" && source \"$SDKMAN_DIR/bin/sdkman-init.sh\"  && /home/vagrant/tomcat/bin/catalina.sh stop'
-                    sh ' ssh -o StrictHostKeyChecking=no vagrant@172.28.128.4 export SDKMAN_DIR=\"/usr/local/sdkman\" && source \"$SDKMAN_DIR/bin/sdkman-init.sh\" && /home/vagrant/tomcat/bin/catalina.sh start'
+                    sh ' ssh -o StrictHostKeyChecking=no vagrant@172.28.128.4  /home/vagrant/tomcat/bin/catalina.sh stop'
+                    sh ' ssh -o StrictHostKeyChecking=no vagrant@172.28.128.4  /home/vagrant/tomcat/bin/catalina.sh start'
                 }
                  
             }
