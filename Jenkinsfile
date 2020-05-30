@@ -24,7 +24,7 @@ pipeline {
         }
         stage("Deploy to Alpine"){
             steps{
-                sshagent (credentials: ['alpine']) {
+                sshagent (['vagrant-key']) {
                     sh """ scp -o StrictHostKeyChecking=no target/maven-web.war root@172.28.128.4:/home/vagrant/tomcat/webapps/
                            ssh -o StrictHostKeyChecking=no root@172.28.128.4 /home/vagrant/tomcat/bin/catalina.sh stop
                            ssh -o StrictHostKeyChecking=no root@172.28.128.4 /home/vagrant/tomcat/bin/catalina.sh start
